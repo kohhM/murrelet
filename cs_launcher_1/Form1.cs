@@ -15,6 +15,7 @@ namespace cs_launcher_1
     public partial class murrelet : Form
     {
         private DataTable dataTable = new DataTable();
+        int row = -1;
 
         public murrelet()
         {
@@ -38,17 +39,42 @@ namespace cs_launcher_1
 
         }
 
-        void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        void dataGridView1_CellClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.B == MouseButtons.Left)
+            string title;
+            string brand;
+            //           if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                var hoge = dataGridView1[0, e.RowIndex].Value;
-                this.toolStripStatusLabel1.Text = (hoge.ToString());
+                row = e.RowIndex;
+                //テスト
+                Console.WriteLine(row);
+            }
+            else if((e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Left))
+            {
+                try
+                {
+                    title = (string)dataGridView1[1, e.RowIndex].Value;
+                }
+                catch
+                {
+                    title = "";
+                }
+                try
+                {
+                    brand = (string)dataGridView1[2, e.RowIndex].Value;
+                }
+                catch
+                {
+                    brand = "";
+                }
+                finally
+                {
+                    this.toolStripStatusLabel1.Text = title;
+                }
             }
             else
             {
-                string title = (string) dataGridView1[1, e.RowIndex].Value;
-                string brand = (string)dataGridView1[2, e.RowIndex].Value;
             }
         }
 
@@ -66,6 +92,12 @@ namespace cs_launcher_1
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string uid = (string)dataGridView1[0,e.RowIndex].Value;
+            DateTime dt = DateTime.Now;
+            string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
+            dataTable.Rows[e.RowIndex][3] = now;
+            dataTable.AcceptChanges();
+            //sqliteに反映させないといけない
+            
             //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
@@ -88,14 +120,10 @@ namespace cs_launcher_1
             }
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
         private void タイトルToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string title = (string)dataTable.Rows[row][1];
+            Clipboard.SetText(title);
         }
     }
 }
