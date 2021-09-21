@@ -79,9 +79,9 @@ namespace cs_launcher_1
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.編集ToolStripMenuItem,
             this.開くToolStripMenuItem,
+            this.設定ToolStripMenuItem1,
             this.コピーToolStripMenuItem,
-            this.削除ToolStripMenuItem,
-            this.設定ToolStripMenuItem1});
+            this.削除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
@@ -111,7 +111,7 @@ namespace cs_launcher_1
             // erogameScapeを開くToolStripMenuItem
             // 
             this.erogameScapeを開くToolStripMenuItem.Name = "erogameScapeを開くToolStripMenuItem";
-            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.erogameScapeを開くToolStripMenuItem.Text = "ErogameScapeを開く";
             this.erogameScapeを開くToolStripMenuItem.Click += new System.EventHandler(this.erogameScapeを開くToolStripMenuItem_Click);
             // 
@@ -143,12 +143,14 @@ namespace cs_launcher_1
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
             this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.削除ToolStripMenuItem.Text = "削除";
+            this.削除ToolStripMenuItem.Click += new System.EventHandler(this.削除ToolStripMenuItem_Click);
             // 
             // 設定ToolStripMenuItem1
             // 
             this.設定ToolStripMenuItem1.Name = "設定ToolStripMenuItem1";
             this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.設定ToolStripMenuItem1.Text = "設定";
+            this.設定ToolStripMenuItem1.Text = "編集";
+            this.設定ToolStripMenuItem1.Click += new System.EventHandler(this.設定ToolStripMenuItem1_Click);
             // 
             // menuStrip1
             // 
@@ -224,8 +226,8 @@ namespace cs_launcher_1
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(51, 17);
+            this.toolStripStatusLabel1.Text = "murrelet";
             // 
             // murrelet
             // 

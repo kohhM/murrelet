@@ -14,7 +14,8 @@ namespace cs_launcher_1
 {
     public partial class murrelet : Form
     {
-        private DataTable dataTable = new DataTable();
+        checkDel CheckDel;
+        public static DataTable dataTable = new DataTable();
         int row;
 
         public murrelet()
@@ -96,7 +97,7 @@ namespace cs_launcher_1
             string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
             dataTable.Rows[e.RowIndex][3] = now;
             dataTable.AcceptChanges();
-            //sqliteに反映させないといけない
+
             
             //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
@@ -104,6 +105,11 @@ namespace cs_launcher_1
                 con.Open();
                 try
                 {
+                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = "+"'"+now+"'"+"WHERE uid ="+"'"+uid+"'", con);
+                    SQLiteDataReader sdr2 = com1.ExecuteReader();
+                    sdr2.Close();
+                    
+
                     SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid ="+"'"+uid +"'", con);
                     SQLiteDataReader sdr = com.ExecuteReader();
                     while (sdr.Read() == true)
@@ -180,13 +186,62 @@ namespace cs_launcher_1
 
         private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //セルダブルクリックの関数ができたら、それをコピペ
+            string uid = (string)dataTable.Rows[row][0];
+            DateTime dt = DateTime.Now;
+            string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
+            dataTable.Rows[row][3] = now;
+            dataTable.AcceptChanges();
+
+
+            //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
+            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr2 = com1.ExecuteReader();
+                    sdr2.Close();
+
+
+                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr = com.ExecuteReader();
+                    while (sdr.Read() == true)
+                    {
+                        Process.Start((string)@sdr["execpath"]);
+                    }
+
+                    sdr.Close();
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
         {
             long esid = (Int64)dataTable.Rows[row][6];
-            Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" +esid);
+            if (esid != -1)
+            {
+                Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + esid);
+            }
+            else
+            {
+                this.toolStripStatusLabel1.Text = "erogameScapeIDが登録されていません";
+            }
+        }
+
+        private void 削除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkDel checkDel = new checkDel();
+            checkDel.Show();
+        }
+
+        private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
