@@ -34,11 +34,6 @@ namespace cs_launcher_1
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         void dataGridView1_CellClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string title;
@@ -51,7 +46,9 @@ namespace cs_launcher_1
                 //セルを選択できるように
 
                 row = e.RowIndex;
-                contextMenuStrip1.Show(e.X,e.Y);
+                contextMenuStrip1.Show();
+                contextMenuStrip1.Left = MousePosition.X;
+                contextMenuStrip1.Top = MousePosition.Y;
             }
             else if(e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -152,6 +149,33 @@ namespace cs_launcher_1
             {
                 this.toolStripStatusLabel1.Text = "コピー失敗 >> ブランドが未記入です";
             }
+        }
+
+        private void フォルダーを開くToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string uid = (string)dataTable.Rows[row][0];
+
+            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr = com.ExecuteReader();
+                    while (sdr.Read() == true)
+                    {
+                        Process.Start("EXPLORER.EXE","/select,"+(string)@sdr["execpath"]);
+                        this.toolStripStatusLabel1.Text = "フォルダを開きました";
+                    }
+
+                    sdr.Close();
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
         }
     }
 }

@@ -97,14 +97,15 @@ namespace cs_launcher_1
             this.フォルダーを開くToolStripMenuItem,
             this.erogameScapeを開くToolStripMenuItem});
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.開くToolStripMenuItem.Text = "開く";
             // 
             // フォルダーを開くToolStripMenuItem
             // 
             this.フォルダーを開くToolStripMenuItem.Name = "フォルダーを開くToolStripMenuItem";
-            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.フォルダーを開くToolStripMenuItem.Text = "フォルダーを開く";
+            this.フォルダーを開くToolStripMenuItem.Click += new System.EventHandler(this.フォルダーを開くToolStripMenuItem_Click);
             // 
             // erogameScapeを開くToolStripMenuItem
             // 
@@ -167,7 +168,6 @@ namespace cs_launcher_1
             this.f1.Name = "f1";
             this.f1.Size = new System.Drawing.Size(53, 20);
             this.f1.Text = "ファイル";
-            this.f1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // プロセスから追加ToolStripMenuItem
             // 
