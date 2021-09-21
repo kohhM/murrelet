@@ -44,13 +44,16 @@ namespace cs_launcher_1
             string title;
             string brand;
             //           if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+
+                dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                //セルを選択できるように
+
                 row = e.RowIndex;
-                //テスト
-                Console.WriteLine(row);
+                contextMenuStrip1.Show(e.X,e.Y);
             }
-            else if((e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Left))
+            else if(e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 try
                 {
@@ -122,8 +125,33 @@ namespace cs_launcher_1
 
         private void タイトルToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string title = (string)dataTable.Rows[row][1];
-            Clipboard.SetText(title);
+            string title;
+            try
+            {
+                title = (string)dataTable.Rows[row][1];
+                Clipboard.SetText(title);
+                this.toolStripStatusLabel1.Text = title+"をコピーしました";
+            }
+            catch
+            {
+                this.toolStripStatusLabel1.Text = "コピー失敗 >> タイトルが未記入です";
+            }
+
+        }
+
+        private void ブランドToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string brand;
+            try
+            {
+                brand = (string)dataTable.Rows[row][2];
+                Clipboard.SetText(brand);
+                this.toolStripStatusLabel1.Text = brand+"をコピーしました";
+            }
+            catch
+            {
+                this.toolStripStatusLabel1.Text = "コピー失敗 >> ブランドが未記入です";
+            }
         }
     }
 }

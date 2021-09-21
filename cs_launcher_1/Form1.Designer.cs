@@ -63,8 +63,6 @@ namespace cs_launcher_1
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            //追加部分
             this.dataGridView1.Location = new System.Drawing.Point(0, 27);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -85,7 +83,7 @@ namespace cs_launcher_1
             this.削除ToolStripMenuItem,
             this.設定ToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // 編集ToolStripMenuItem
             // 
@@ -120,7 +118,7 @@ namespace cs_launcher_1
             this.タイトルToolStripMenuItem,
             this.ブランドToolStripMenuItem});
             this.コピーToolStripMenuItem.Name = "コピーToolStripMenuItem";
-            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.コピーToolStripMenuItem.Text = "コピー";
             // 
             // タイトルToolStripMenuItem
@@ -133,8 +131,9 @@ namespace cs_launcher_1
             // ブランドToolStripMenuItem
             // 
             this.ブランドToolStripMenuItem.Name = "ブランドToolStripMenuItem";
-            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ブランドToolStripMenuItem.Text = "ブランド";
+            this.ブランドToolStripMenuItem.Click += new System.EventHandler(this.ブランドToolStripMenuItem_Click);
             // 
             // 削除ToolStripMenuItem
             // 
