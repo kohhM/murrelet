@@ -1,0 +1,37 @@
+[
+  {
+    "Header": "uid",
+    "DisplayIndex": 0,
+    "Width": 40
+  }
+  {
+    "Header": "title",
+    "DisplayIndex": 1,
+    "Width": 40
+  }
+  {
+    "Header": "brand",
+    "DisplayIndex": 2,
+    "Width": 40
+  }
+  {
+    "Header": "latestPlay",
+    "DisplayIndex": 3,
+    "Width": 40
+  }
+  {
+    "Header": "saleday",
+    "DisplayIndex": 4,
+    "Width": 40
+  }
+  {
+    "Header": "memo",
+    "DisplayIndex": 5,
+    "Width": 40
+  }
+  {
+    "Header": "esid",
+    "DisplayIndex": 6,
+    "Width": 40
+  }
+]

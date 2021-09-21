@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace cs_launcher_1
 {
@@ -16,6 +17,7 @@ namespace cs_launcher_1
     {
         checkDel CheckDel;
         public static DataTable dataTable = new DataTable();
+        checkDel checkDel = new checkDel();
         int row;
 
         public murrelet()
@@ -31,6 +33,9 @@ namespace cs_launcher_1
             using (SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM games", con))
             {
                 adapter.Fill(dataTable);
+                dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[6].Visible = false;
                 con.Close();
             }
         }
@@ -235,13 +240,27 @@ namespace cs_launcher_1
 
         private void 削除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            checkDel checkDel = new checkDel();
+            
             checkDel.Show();
         }
 
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void murrelet_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+//            checkDel checkDel = (checkDel)sender;
+//            Console.WriteLine(checkDel.DialogResult);
+//            this.toolStripStatusLabel1.Text = DialogResult.ToString();
+            //わからない。放置
+        }
+
+        private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //https://shikaku-sh.hatenablog.com/entry/wpf-restore-datagrid-column-index-and-width#%E5%8F%82%E8%80%83
         }
     }
 }

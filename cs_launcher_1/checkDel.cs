@@ -21,6 +21,7 @@ namespace cs_launcher_1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -42,6 +43,7 @@ namespace cs_launcher_1
                 }
             }
             */
+            this.DialogResult = DialogResult.OK;
             Close();
         }
     }
