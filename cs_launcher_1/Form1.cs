@@ -15,7 +15,7 @@ namespace cs_launcher_1
     public partial class murrelet : Form
     {
         private DataTable dataTable = new DataTable();
-        int row = -1;
+        int row;
 
         public murrelet()
         {
@@ -176,6 +176,17 @@ namespace cs_launcher_1
                 }
             }
 
+        }
+
+        private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //セルダブルクリックの関数ができたら、それをコピペ
+        }
+
+        private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            long esid = (Int64)dataTable.Rows[row][6];
+            Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" +esid);
         }
     }
 }

@@ -88,8 +88,9 @@ namespace cs_launcher_1
             // 編集ToolStripMenuItem
             // 
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
-            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.編集ToolStripMenuItem.Text = "ゲーム起動";
+            this.編集ToolStripMenuItem.Click += new System.EventHandler(this.編集ToolStripMenuItem_Click);
             // 
             // 開くToolStripMenuItem
             // 
@@ -103,15 +104,16 @@ namespace cs_launcher_1
             // フォルダーを開くToolStripMenuItem
             // 
             this.フォルダーを開くToolStripMenuItem.Name = "フォルダーを開くToolStripMenuItem";
-            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.フォルダーを開くToolStripMenuItem.Text = "フォルダーを開く";
             this.フォルダーを開くToolStripMenuItem.Click += new System.EventHandler(this.フォルダーを開くToolStripMenuItem_Click);
             // 
             // erogameScapeを開くToolStripMenuItem
             // 
             this.erogameScapeを開くToolStripMenuItem.Name = "erogameScapeを開くToolStripMenuItem";
-            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.erogameScapeを開くToolStripMenuItem.Text = "ErogameScapeを開く";
+            this.erogameScapeを開くToolStripMenuItem.Click += new System.EventHandler(this.erogameScapeを開くToolStripMenuItem_Click);
             // 
             // コピーToolStripMenuItem
             // 
@@ -132,20 +134,20 @@ namespace cs_launcher_1
             // ブランドToolStripMenuItem
             // 
             this.ブランドToolStripMenuItem.Name = "ブランドToolStripMenuItem";
-            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.ブランドToolStripMenuItem.Text = "ブランド";
             this.ブランドToolStripMenuItem.Click += new System.EventHandler(this.ブランドToolStripMenuItem_Click);
             // 
             // 削除ToolStripMenuItem
             // 
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.削除ToolStripMenuItem.Text = "削除";
             // 
             // 設定ToolStripMenuItem1
             // 
             this.設定ToolStripMenuItem1.Name = "設定ToolStripMenuItem1";
-            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.設定ToolStripMenuItem1.Text = "設定";
             // 
             // menuStrip1
