@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace cs_launcher_1
 {
@@ -43,11 +44,18 @@ namespace cs_launcher_1
                     Console.WriteLine(ex.Message);
                 }
             }
+            dataGridView1.DataSource = dataTable;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void getPro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visible = false;
         }
     }
 }

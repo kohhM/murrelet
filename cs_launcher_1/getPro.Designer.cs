@@ -51,6 +51,7 @@ namespace cs_launcher_1
             this.Controls.Add(this.dataGridView1);
             this.Name = "getPro";
             this.Text = "getPro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.getPro_FormClosing);
             this.Load += new System.EventHandler(this.getPro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -266,6 +266,12 @@ namespace cs_launcher_1
         private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             getPro.Show();
+            getPro.Visible = true;
+        }
+
+        private void erogameScapeから追加ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

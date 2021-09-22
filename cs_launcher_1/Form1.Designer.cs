@@ -188,6 +188,7 @@ namespace cs_launcher_1
             this.erogameScapeから追加ToolStripMenuItem.Name = "erogameScapeから追加ToolStripMenuItem";
             this.erogameScapeから追加ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.erogameScapeから追加ToolStripMenuItem.Text = "ErogameScapeから追加";
+            this.erogameScapeから追加ToolStripMenuItem.Click += new System.EventHandler(this.erogameScapeから追加ToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
             // 
@@ -208,13 +209,13 @@ namespace cs_launcher_1
             // 設定ToolStripMenuItem
             // 
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.設定ToolStripMenuItem.Text = "設定";
             // 
             // バージョン確認ToolStripMenuItem
             // 
             this.バージョン確認ToolStripMenuItem.Name = "バージョン確認ToolStripMenuItem";
-            this.バージョン確認ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.バージョン確認ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.バージョン確認ToolStripMenuItem.Text = "バージョン情報";
             // 
             // statusStrip1
