@@ -62,6 +62,9 @@ namespace cs_launcher_1
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 27);
             this.dataGridView1.MultiSelect = false;
@@ -178,6 +181,7 @@ namespace cs_launcher_1
             this.プロセスから追加ToolStripMenuItem.Name = "プロセスから追加ToolStripMenuItem";
             this.プロセスから追加ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.プロセスから追加ToolStripMenuItem.Text = "プロセスから追加";
+            this.プロセスから追加ToolStripMenuItem.Click += new System.EventHandler(this.プロセスから追加ToolStripMenuItem_Click);
             // 
             // erogameScapeから追加ToolStripMenuItem
             // 

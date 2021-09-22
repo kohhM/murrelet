@@ -15,9 +15,9 @@ namespace cs_launcher_1
 {
     public partial class murrelet : Form
     {
-        checkDel CheckDel;
         public static DataTable dataTable = new DataTable();
         checkDel checkDel = new checkDel();
+        getPro getPro = new getPro();
         int row;
 
         public murrelet()
@@ -261,6 +261,11 @@ namespace cs_launcher_1
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
         {
             //https://shikaku-sh.hatenablog.com/entry/wpf-restore-datagrid-column-index-and-width#%E5%8F%82%E8%80%83
+        }
+
+        private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getPro.Show();
         }
     }
 }
