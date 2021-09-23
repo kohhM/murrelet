@@ -18,6 +18,7 @@ namespace cs_launcher_1
         public static DataTable dataTable = new DataTable();
         checkDel checkDel = new checkDel();
         getPro getPro = new getPro();
+        esidAdd esidAdd = new esidAdd();
         int row;
 
         public murrelet()
@@ -271,7 +272,16 @@ namespace cs_launcher_1
 
         private void erogameScapeから追加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            esidAdd.Show();
+            esidAdd.Visible = true;
+        }
 
+        public void esidButton(object sender,EventArgs e)
+        {
+            this.esidAdd.esid = this.esidAdd.textBox1.Text;
+            this.toolStripStatusLabel1.Text = this.esidAdd.esid;
+
+            this.esidAdd.Visible = false;
         }
     }
 }

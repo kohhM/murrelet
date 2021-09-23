@@ -27,17 +27,23 @@ namespace cs_launcher_1
             dataTable.Columns.Add("パス", typeof(string));
             DataRow row;
 
-            System.Diagnostics.Process[] ps = System.Diagnostics.Process.GetProcesses();
+            //System.Diagnostics.Process[] ps = System.Diagnostics.Process.GetProcesses();
+            var processes = Process.GetProcesses();
 
-            foreach(System.Diagnostics.Process p in ps)
+            //foreach(System.Diagnostics.Process p in ps)
+            foreach(var process in processes)
             {
                 try
                 {
                     row = dataTable.NewRow();
-                    row["pid"] = p.Id;
-                    row["プロセス名"] = p.ProcessName;
-                    row["タイトル名"] = p.MainModule.ModuleName;
-                    row["パス"] = p.MainModule.FileName;
+                    row["pid"] = process.Id;
+
+                    row["プロセス名"] = process.ProcessName;
+                    //                    row["タイトル名"] = p.MainModule.ModuleName;
+                    row["タイトル名"] = process.MainWindowTitle;
+                    //                   row["パス"] = p.MainModule.FileName;
+                    row["パス"] = process.MainModule.FileName;
+                    dataTable.Rows.Add(row);
                 }
                 catch(Exception ex)
                 {
@@ -56,6 +62,11 @@ namespace cs_launcher_1
         {
             e.Cancel = true;
             this.Visible = false;
+        }
+
+        private void 再読み込みToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
