@@ -18,12 +18,17 @@ namespace cs_launcher_1
         {
             InitializeComponent();
         }
-
-
         private void esidAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            esid = textBox1.Text;
+            murrelet.TheProcess();
+            Close();
         }
     }
 }

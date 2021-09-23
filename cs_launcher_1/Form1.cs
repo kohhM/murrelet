@@ -276,12 +276,9 @@ namespace cs_launcher_1
             esidAdd.Visible = true;
         }
 
-        public void esidButton(object sender,EventArgs e)
+        public static void TheProcess()
         {
-            this.esidAdd.esid = this.esidAdd.textBox1.Text;
-            this.toolStripStatusLabel1.Text = this.esidAdd.esid;
-
-            this.esidAdd.Visible = false;
+            Console.WriteLine(esidAdd.esid);
         }
     }
 }
