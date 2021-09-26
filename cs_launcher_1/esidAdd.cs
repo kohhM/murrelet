@@ -24,11 +24,5 @@ namespace cs_launcher_1
             this.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            esid = textBox1.Text;
-            murrelet.TheProcess();
-            Close();
-        }
     }
 }

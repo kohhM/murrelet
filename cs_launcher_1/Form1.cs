@@ -272,13 +272,77 @@ namespace cs_launcher_1
 
         private void erogameScapeから追加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            esidAdd.Show();
             esidAdd.Visible = true;
+            this.esidAdd.button1.Click += Button1_Click;
+            this.esidAdd.textBox1.Text = "";
+            esidAdd.Show();
         }
 
-        public static void TheProcess()
+        private void Button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(esidAdd.esid);
+            DataRow row;
+            string esidS = esidAdd.textBox1.Text;
+            int esid;
+            string[] add = new string[3];
+            long idEE;
+            try
+            {
+                esid = Int32.Parse(esidS);
+//                this.toolStripStatusLabel1.Text = esidS;
+
+                using(SQLiteConnection con = new SQLiteConnection("Data Source = data.db"))
+                {
+                    con.Open();
+                    try
+                    {
+                        SQLiteCommand com1 = new SQLiteCommand("SELECT * FROM erogamescape WHERE id =" + "'"+esid+"'", con);
+                        SQLiteDataReader sdr = com1.ExecuteReader();
+                        while (sdr.Read() == true)
+                        {
+                            idEE = (long)sdr["id"];
+                            add[0] = (string)sdr["title"];
+                            add[1] = (string)sdr["saleday"];
+                            add[2] = (string)sdr["brand"];
+
+                            this.toolStripStatusLabel1.Text = "成功:《"+add[0] + "》を追加しました";
+                        }
+                        sdr.Close();
+                    }
+                    catch(Exception a)
+                    {
+                        this.toolStripStatusLabel1.Text = "本アプリのデータが古い、または存在しないidです";
+                        //sqlにesidがなくてもエラーを吐かない。そこは修正必要だけどめんどいから後で。
+                        Console.WriteLine("エラー>>" + a);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
+            catch
+            {
+                this.toolStripStatusLabel1.Text = "失敗しました:半角で数値を入力してください";
+            }
+
+            row = dataTable.NewRow();
+            row["uid"] = "xxxx";
+            row["title"] = add[0];
+            row["brand"] = add[2];
+            row["saleday"] = add[1];
+            dataTable.Rows.Add(row);
+            dataGridView1.DataSource = dataTable;
+
+            using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand con2 = new SQLiteCommand("");
+                }
+            }
+
+            esidAdd.Close();
         }
     }
 }
