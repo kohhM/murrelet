@@ -282,9 +282,9 @@ namespace cs_launcher_1
         {
             DataRow row;
             string esidS = esidAdd.textBox1.Text;
-            int esid;
+            int esid = -1;
             string[] add = new string[3];
-            long idEE;
+            long idEE = -1;
             try
             {
                 esid = Int32.Parse(esidS);
@@ -312,6 +312,7 @@ namespace cs_launcher_1
                     {
                         this.toolStripStatusLabel1.Text = "本アプリのデータが古い、または存在しないidです";
                         //sqlにesidがなくてもエラーを吐かない。そこは修正必要だけどめんどいから後で。
+                        //別にそこを確認する必要ない？
                         Console.WriteLine("エラー>>" + a);
                     }
                     finally
@@ -326,23 +327,46 @@ namespace cs_launcher_1
             }
 
             row = dataTable.NewRow();
-            row["uid"] = "xxxx";
+            row["uid"] = newGuid();
             row["title"] = add[0];
             row["brand"] = add[2];
             row["saleday"] = add[1];
             dataTable.Rows.Add(row);
+            this.toolStripStatusLabel1.Text = (string)row["uid"];
             dataGridView1.DataSource = dataTable;
+
 
             using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
                 con.Open();
                 try
                 {
-                    SQLiteCommand con2 = new SQLiteCommand("");
+                    SQLiteCommand com2 = new SQLiteCommand("INSERT INTO games(uid,title,brand,saleday,esid)VALUES("+row["uid"]+","+row["title"]+","+row["brand"]+","+row["saleday"]+","+idEE+")",con);
+                    com2.ExecuteNonQuery();
+
+                }
+                catch(Exception a)
+                {
+                    this.toolStripStatusLabel1.Text = "失敗しました:SQLite書き込みエラー";
+                    Console.WriteLine("エラー>>" + a);
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
 
+
+
             esidAdd.Close();
+        }
+
+        private static string newGuid()
+        {
+            string Nguid;
+            Guid guidValue = Guid.NewGuid();
+            Nguid = guidValue.ToString("N").ToUpper();
+            return (Nguid);
         }
     }
 }
