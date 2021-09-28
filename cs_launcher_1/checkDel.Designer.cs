@@ -73,15 +73,15 @@ namespace cs_launcher_1
             this.Controls.Add(this.button1);
             this.Name = "checkDel";
             this.Text = "checkDel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.checkDel_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button2;
     }
 }

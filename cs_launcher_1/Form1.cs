@@ -241,22 +241,27 @@ namespace cs_launcher_1
 
         private void 削除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            checkDel.Visible = true;
+            this.checkDel.button2.Click += Button2_Click;
+            this.checkDel.button1.Click += Button1_Click1;
             checkDel.Show();
+        }
+
+        private void Button1_Click1(object sender, EventArgs e)
+        {
+            checkDel.Close();
+            //キャンセル
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+            //削除確定
         }
 
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void murrelet_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-//            checkDel checkDel = (checkDel)sender;
-//            Console.WriteLine(checkDel.DialogResult);
-//            this.toolStripStatusLabel1.Text = DialogResult.ToString();
-            //わからない。放置
         }
 
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
@@ -341,7 +346,7 @@ namespace cs_launcher_1
                 con.Open();
                 try
                 {
-                    SQLiteCommand com2 = new SQLiteCommand("INSERT INTO games(uid,title,brand,saleday,esid)VALUES("+row["uid"]+","+row["title"]+","+row["brand"]+","+row["saleday"]+","+idEE+")",con);
+                    SQLiteCommand com2 = new SQLiteCommand("INSERT INTO games('uid','title','brand','saleday','esid')VALUES('"+row["uid"]+"','"+row["title"]+"','"+row["brand"]+"','"+row["saleday"]+"','"+idEE+"')",con);
                     com2.ExecuteNonQuery();
 
                 }

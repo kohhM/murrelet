@@ -46,5 +46,11 @@ namespace cs_launcher_1
             this.DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void checkDel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visible = false;
+        }
     }
 }

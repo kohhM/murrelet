@@ -246,7 +246,6 @@ namespace cs_launcher_1
             this.Name = "murrelet";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.murrelet_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.murrelet_FormClosed);
             this.Load += new System.EventHandler(this.murrelet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
