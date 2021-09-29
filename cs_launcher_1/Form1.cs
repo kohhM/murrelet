@@ -137,7 +137,7 @@ namespace cs_launcher_1
             string title;
             try
             {
-                title = (string)dataTable.Rows[row][1];
+                title = (string)dataGridView1[1,row].Value;
                 Clipboard.SetText(title);
                 this.toolStripStatusLabel1.Text = title+"をコピーしました";
             }
@@ -153,7 +153,7 @@ namespace cs_launcher_1
             string brand;
             try
             {
-                brand = (string)dataTable.Rows[row][2];
+                brand = (string)dataGridView1[2,row].Value;
                 Clipboard.SetText(brand);
                 this.toolStripStatusLabel1.Text = brand+"をコピーしました";
             }
@@ -165,7 +165,7 @@ namespace cs_launcher_1
 
         private void フォルダーを開くToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string uid = (string)dataTable.Rows[row][0];
+            string uid = (string)dataGridView1[0,row].Value;
 
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
@@ -228,7 +228,7 @@ namespace cs_launcher_1
 
         private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            long esid = (Int64)dataTable.Rows[row][6];
+            long esid = (Int64)dataGridView1[6,row].Value;
             if (esid != -1)
             {
                 Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + esid);
