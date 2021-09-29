@@ -86,14 +86,14 @@ namespace cs_launcher_1
             this.コピーToolStripMenuItem,
             this.削除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // 編集ToolStripMenuItem
             // 
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
-            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.編集ToolStripMenuItem.Text = "ゲーム起動";
-            this.編集ToolStripMenuItem.Click += new System.EventHandler(this.編集ToolStripMenuItem_Click);
+            this.編集ToolStripMenuItem.Click += new System.EventHandler(this.ゲーム起動ToolStripMenuItem_Click);
             // 
             // 開くToolStripMenuItem
             // 
@@ -101,7 +101,7 @@ namespace cs_launcher_1
             this.フォルダーを開くToolStripMenuItem,
             this.erogameScapeを開くToolStripMenuItem});
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.開くToolStripMenuItem.Text = "開く";
             // 
             // フォルダーを開くToolStripMenuItem
@@ -121,7 +121,7 @@ namespace cs_launcher_1
             // 設定ToolStripMenuItem1
             // 
             this.設定ToolStripMenuItem1.Name = "設定ToolStripMenuItem1";
-            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.設定ToolStripMenuItem1.Text = "編集";
             this.設定ToolStripMenuItem1.Click += new System.EventHandler(this.設定ToolStripMenuItem1_Click);
             // 
@@ -131,7 +131,7 @@ namespace cs_launcher_1
             this.タイトルToolStripMenuItem,
             this.ブランドToolStripMenuItem});
             this.コピーToolStripMenuItem.Name = "コピーToolStripMenuItem";
-            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.コピーToolStripMenuItem.Text = "コピー";
             // 
             // タイトルToolStripMenuItem
@@ -151,7 +151,7 @@ namespace cs_launcher_1
             // 削除ToolStripMenuItem
             // 
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.削除ToolStripMenuItem.Text = "削除";
             this.削除ToolStripMenuItem.Click += new System.EventHandler(this.削除ToolStripMenuItem_Click);
             // 
@@ -209,13 +209,13 @@ namespace cs_launcher_1
             // 設定ToolStripMenuItem
             // 
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.設定ToolStripMenuItem.Text = "設定";
             // 
             // バージョン確認ToolStripMenuItem
             // 
             this.バージョン確認ToolStripMenuItem.Name = "バージョン確認ToolStripMenuItem";
-            this.バージョン確認ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.バージョン確認ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.バージョン確認ToolStripMenuItem.Text = "バージョン情報";
             // 
             // statusStrip1

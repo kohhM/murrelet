@@ -103,6 +103,7 @@ namespace cs_launcher_1
             string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
             dataTable.Rows[e.RowIndex][3] = now;
             dataTable.AcceptChanges();
+            dataGridView1.DataSource = dataTable;
 
             
             //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
@@ -192,38 +193,7 @@ namespace cs_launcher_1
 
         private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string uid = (string)dataTable.Rows[row][0];
-            DateTime dt = DateTime.Now;
-            string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
-            dataTable.Rows[row][3] = now;
-            dataTable.AcceptChanges();
 
-
-            //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
-            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
-            {
-                con.Open();
-                try
-                {
-                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
-                    SQLiteDataReader sdr2 = com1.ExecuteReader();
-                    sdr2.Close();
-
-
-                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
-                    SQLiteDataReader sdr = com.ExecuteReader();
-                    while (sdr.Read() == true)
-                    {
-                        Process.Start((string)@sdr["execpath"]);
-                    }
-
-                    sdr.Close();
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
         }
 
         private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
@@ -372,6 +342,49 @@ namespace cs_launcher_1
             Guid guidValue = Guid.NewGuid();
             Nguid = guidValue.ToString("N").ToUpper();
             return (Nguid);
+        }
+
+        private void ゲーム起動ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string uid = (string)dataGridView1[0,row].Value;
+            DateTime dt = DateTime.Now;
+            string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
+            for(int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                if((string)dataTable.Rows[row][0] == uid)
+                {
+                    dataTable.Rows[row][3] = now;
+                }
+            }
+            dataTable.AcceptChanges();
+            dataGridView1.DataSource = dataTable;
+
+
+            //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
+            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr2 = com1.ExecuteReader();
+                    sdr2.Close();
+
+
+                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr = com.ExecuteReader();
+                    while (sdr.Read() == true)
+                    {
+                        Process.Start((string)@sdr["execpath"]);
+                    }
+
+                    sdr.Close();
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
     }
 }
