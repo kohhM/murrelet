@@ -214,6 +214,7 @@ namespace cs_launcher_1
             checkDel.Visible = true;
             this.checkDel.button2.Click += Button2_Click;
             this.checkDel.button1.Click += Button1_Click1;
+            this.checkDel.label1.Text = (string)dataGridView1[1,row].Value+"\nを本当に削除しますか？";
             checkDel.Show();
         }
 
@@ -225,7 +226,28 @@ namespace cs_launcher_1
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string uid = (string)dataGridView1[0, row].Value;
+            dataGridView1.Rows.RemoveAt(row);
+
+            using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com = new SQLiteCommand("DELETE FROM games WHERE uid =" + "'" + uid + "'", con);
+                    com.ExecuteNonQuery();
+                }
+                catch
+                {
+                    Console.WriteLine("sqlエラー");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
+            checkDel.Close();
             //削除確定
         }
 

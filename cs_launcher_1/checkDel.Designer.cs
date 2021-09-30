@@ -57,7 +57,7 @@ namespace cs_launcher_1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 51);
+            this.label1.Location = new System.Drawing.Point(77, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 12);
             this.label1.TabIndex = 2;
@@ -80,8 +80,8 @@ namespace cs_launcher_1
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label label1;
     }
 }
