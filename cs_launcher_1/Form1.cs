@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Text.Json;
+using System.IO;
 
 namespace cs_launcher_1
 {
@@ -38,6 +39,10 @@ namespace cs_launcher_1
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
                 con.Close();
+
+
+
+
             }
         }
 
@@ -259,6 +264,18 @@ namespace cs_launcher_1
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
         {
             //https://shikaku-sh.hatenablog.com/entry/wpf-restore-datagrid-column-index-and-width#%E5%8F%82%E8%80%83
+
+            for(int i=0;i<6; i++)
+            {
+                var dataGridParameter = new DataGridParameter
+                {
+                    DisplayIndex = i,
+                    Width = dataGridView1.Columns[i].Width
+                };
+            }
+            string filename = "dataGrid_setting.json";
+ //           string jsonString = JsonSerializer.Serialize(dataGridParameter);
+ //           File.writeAllText(filename, jsonString);
         }
 
         private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -408,5 +425,10 @@ namespace cs_launcher_1
                 }
             }
         }
+    }
+    public class DataGridParameter
+    {
+        public int DisplayIndex { get; set; }
+        public int Width { get; set; }
     }
 }
