@@ -31,6 +31,7 @@ namespace cs_launcher_1
         private void murrelet_Load(object sender, EventArgs e)
         {
             this.Text = "murrelet";
+            
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             using (SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM games", con))
             {
@@ -40,9 +41,12 @@ namespace cs_launcher_1
                 dataGridView1.Columns[6].Visible = false;
                 con.Close();
 
-
-
-
+            }
+            string[] width = cheackWidth();
+            for (int i = 0; i < width.Length; i++)
+            {
+                int r = i + 1;
+                dataGridView1.Columns[r].Width = int.Parse(width[i]);
             }
         }
 
@@ -50,7 +54,6 @@ namespace cs_launcher_1
         {
             string title;
             string brand;
-            //           if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
             if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
             {
 
@@ -111,7 +114,6 @@ namespace cs_launcher_1
             dataGridView1.DataSource = dataTable;
 
             
-            //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
                 con.Open();
@@ -263,19 +265,18 @@ namespace cs_launcher_1
 
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //https://shikaku-sh.hatenablog.com/entry/wpf-restore-datagrid-column-index-and-width#%E5%8F%82%E8%80%83
+            int[] width = new int[] { dataGridView1.Columns[1].Width, dataGridView1.Columns[2].Width, dataGridView1.Columns[3].Width, dataGridView1.Columns[4].Width, dataGridView1.Columns[5].Width };
 
-            for(int i=0;i<6; i++)
+            try
             {
-                var dataGridParameter = new DataGridParameter
-                {
-                    DisplayIndex = i,
-                    Width = dataGridView1.Columns[i].Width
-                };
+                StreamWriter file = new StreamWriter(@"dataGridWidth.csv", false,Encoding.UTF8);
+                file.WriteLine(string.Format("{0},{1},{2},{3},{4}", width[0], width[1], width[2], width[3], width[4]));
+                file.Close();
             }
-            string filename = "dataGrid_setting.json";
- //           string jsonString = JsonSerializer.Serialize(dataGridParameter);
- //           File.writeAllText(filename, jsonString);
+            catch(Exception x)
+            {
+                Console.WriteLine("えらー！"+ x.Message);
+            }
         }
 
         private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -398,8 +399,6 @@ namespace cs_launcher_1
             dataTable.AcceptChanges();
             dataGridView1.DataSource = dataTable;
 
-
-            //           SQLiteConnection con = new SQLiteConnection("Data Source = test.db");
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
                 con.Open();
@@ -425,10 +424,22 @@ namespace cs_launcher_1
                 }
             }
         }
+
+        private static string[] cheackWidth()
+        {
+            string[] values;
+            values = new string[5];
+            StreamReader sr = new StreamReader(@"dataGridWidth.csv");
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                values = line.Split(',');
+
+            }
+            sr.Close();
+            return (values);
+        }
     }
-    public class DataGridParameter
-    {
-        public int DisplayIndex { get; set; }
-        public int Width { get; set; }
-    }
+
+    
 }
