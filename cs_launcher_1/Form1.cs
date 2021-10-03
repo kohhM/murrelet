@@ -20,6 +20,7 @@ namespace cs_launcher_1
         checkDel checkDel = new checkDel();
         getPro getPro = new getPro();
         esidAdd esidAdd = new esidAdd();
+        hensyu hensyu = new hensyu();
         int row;
 
         public murrelet()
@@ -260,7 +261,9 @@ namespace cs_launcher_1
 
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            hensyu.Visible = true;
 
+            hensyu.Show();
         }
 
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)

@@ -27,22 +27,6 @@ namespace cs_launcher_1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /*
-            using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
-            {
-                con.Open();
-                try
-                {
-                    SQLiteCommand com = new SQLiteCommand("DELETE FROM games WHERE uid = "+"'"+Form1.uid+"'", con);
-                    SQLiteDataReader sdr = com.ExecuteReader();
-                    sdr.Close();
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-            */
             this.DialogResult = DialogResult.OK;
             Close();
         }

@@ -117,6 +117,12 @@
     <Compile Include="getPro.Designer.cs">
       <DependentUpon>getPro.cs</DependentUpon>
     </Compile>
+    <Compile Include="hensyu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hensyu.Designer.cs">
+      <DependentUpon>hensyu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="checkDel.resx">
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="getPro.resx">
       <DependentUpon>getPro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hensyu.resx">
+      <DependentUpon>hensyu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
