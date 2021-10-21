@@ -99,6 +99,12 @@
     <Compile Include="checkDel.Designer.cs">
       <DependentUpon>checkDel.cs</DependentUpon>
     </Compile>
+    <Compile Include="chkDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chkDD.Designer.cs">
+      <DependentUpon>chkDD.cs</DependentUpon>
+    </Compile>
     <Compile Include="esidAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="checkDel.resx">
       <DependentUpon>checkDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chkDD.resx">
+      <DependentUpon>chkDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="esidAdd.resx">
       <DependentUpon>esidAdd.cs</DependentUpon>
@@ -167,6 +176,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bugMemo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

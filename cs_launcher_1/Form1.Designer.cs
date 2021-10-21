@@ -59,6 +59,7 @@ namespace cs_launcher_1
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowDrop = true;
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
@@ -76,6 +77,8 @@ namespace cs_launcher_1
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.murrelet_DragDrop);
+            this.dataGridView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.murrelet_DragEnter);
             // 
             // contextMenuStrip1
             // 
@@ -86,12 +89,12 @@ namespace cs_launcher_1
             this.コピーToolStripMenuItem,
             this.削除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 114);
             // 
             // 編集ToolStripMenuItem
             // 
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
-            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.編集ToolStripMenuItem.Text = "ゲーム起動";
             this.編集ToolStripMenuItem.Click += new System.EventHandler(this.ゲーム起動ToolStripMenuItem_Click);
             // 
@@ -101,7 +104,7 @@ namespace cs_launcher_1
             this.フォルダーを開くToolStripMenuItem,
             this.erogameScapeを開くToolStripMenuItem});
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.開くToolStripMenuItem.Text = "開く";
             // 
             // フォルダーを開くToolStripMenuItem
@@ -121,7 +124,7 @@ namespace cs_launcher_1
             // 設定ToolStripMenuItem1
             // 
             this.設定ToolStripMenuItem1.Name = "設定ToolStripMenuItem1";
-            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.設定ToolStripMenuItem1.Text = "編集";
             this.設定ToolStripMenuItem1.Click += new System.EventHandler(this.設定ToolStripMenuItem1_Click);
             // 
@@ -131,7 +134,7 @@ namespace cs_launcher_1
             this.タイトルToolStripMenuItem,
             this.ブランドToolStripMenuItem});
             this.コピーToolStripMenuItem.Name = "コピーToolStripMenuItem";
-            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.コピーToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.コピーToolStripMenuItem.Text = "コピー";
             // 
             // タイトルToolStripMenuItem
@@ -151,7 +154,7 @@ namespace cs_launcher_1
             // 削除ToolStripMenuItem
             // 
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.削除ToolStripMenuItem.Text = "削除";
             this.削除ToolStripMenuItem.Click += new System.EventHandler(this.削除ToolStripMenuItem_Click);
             // 
@@ -236,6 +239,7 @@ namespace cs_launcher_1
             // 
             // murrelet
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 453);
@@ -247,6 +251,8 @@ namespace cs_launcher_1
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.murrelet_FormClosing);
             this.Load += new System.EventHandler(this.murrelet_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.murrelet_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.murrelet_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

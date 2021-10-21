@@ -21,6 +21,7 @@ namespace cs_launcher_1
         getPro getPro = new getPro();
         esidAdd esidAdd = new esidAdd();
         hensyu hensyu = new hensyu();
+        chkDD chkDD = new chkDD();
         int row;
 
         public murrelet()
@@ -441,6 +442,118 @@ namespace cs_launcher_1
             }
             sr.Close();
             return (values);
+        }
+
+        private void murrelet_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] drags = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string s in drags)
+                {
+                    if (!File.Exists(s))
+                    {
+                        return;
+                    }
+                }
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        string filePath = "";
+        string targetPath = "";
+        public void murrelet_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
+            if (files.Length == 1)
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string ex = Path.GetExtension(files[i]);
+ //                   string filePath = "";
+ //                   string targetPath = "";
+
+                    if (".lnk" == ex)
+                    {
+                        filePath = files[i];
+                        this.toolStripStatusLabel1.Text = Path.GetFileNameWithoutExtension(filePath);
+                        IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
+                        IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(filePath);
+                        targetPath = shortcut.TargetPath.ToString();
+
+                    }
+                    else if (".url" == ex)
+                    {
+                        filePath = files[i];
+                        this.toolStripStatusLabel1.Text = Path.GetFileNameWithoutExtension(filePath);
+                        IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
+                        IWshRuntimeLibrary.IWshURLShortcut shortcut = (IWshRuntimeLibrary.IWshURLShortcut)shell.CreateShortcut(filePath);
+                        targetPath = shortcut.TargetPath.ToString();
+
+                    }
+                    else if (".exe" == ex)
+                    {
+                        filePath = files[i];
+                        this.toolStripStatusLabel1.Text = Path.GetFileNameWithoutExtension(filePath);
+                        targetPath = filePath;
+                    }
+                    else
+                    {
+                        this.toolStripStatusLabel1.Text = "このファイル形式には対応していません";
+                        return;
+                    }
+                    chkDD.Visible = true;
+                    this.chkDD.button1.Click += Button1_Click2;
+                    this.chkDD.button2.Click += Button2_Click1;
+                    chkDD.Show();
+
+                }
+            }
+            else
+            {
+                this.toolStripStatusLabel1.Text = "複数ファイル同時には読み込めません";
+            }
+        }
+
+        private void Button2_Click1(object sender, EventArgs e)
+        {
+            chkDD.Close();
+            //キャンセル
+        }
+
+        private void Button1_Click2(object sender, EventArgs e)
+        {
+            string uid = newGuid();
+            this.toolStripStatusLabel1.Text = targetPath;
+            
+/*
+            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com = new SQLiteCommand("DELETE FROM games WHERE uid =" + "'" + uid + "'", con);
+                    //sql文変更
+                    com.ExecuteNonQuery();
+                }
+                catch
+                {
+                    Console.WriteLine("sqlエラー");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+*/
+
+            chkDD.Close();
         }
     }
 
