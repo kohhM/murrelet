@@ -22,5 +22,7 @@ namespace cs_launcher_1
             e.Cancel = true;
             this.Visible = false;
         }
+
+
     }
 }

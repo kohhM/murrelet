@@ -57,7 +57,7 @@ namespace cs_launcher_1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 44);
+            this.label1.Location = new System.Drawing.Point(33, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 12);
             this.label1.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace cs_launcher_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 183);
+            this.ClientSize = new System.Drawing.Size(280, 182);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

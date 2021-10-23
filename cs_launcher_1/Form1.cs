@@ -530,17 +530,23 @@ namespace cs_launcher_1
         private void Button1_Click2(object sender, EventArgs e)
         {
             string uid = newGuid();
-            this.toolStripStatusLabel1.Text = targetPath;
+            //仕様変更したい
+            //編集画面にして「登録」でsql追加
+            //chkDDのデザインを変える
+            //これは今後
+
             
-/*
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
                 con.Open();
                 try
                 {
-                    SQLiteCommand com = new SQLiteCommand("DELETE FROM games WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteCommand com = new SQLiteCommand("INSERT INTO games VALUES('" + uid + "','"+ Path.GetFileNameWithoutExtension(filePath) + "','','','','','-1')", con);
                     //sql文変更
                     com.ExecuteNonQuery();
+
+                    SQLiteCommand com2 = new SQLiteCommand("INSERT INTO pathInfo VALUES('" + uid + "','" + 0 + "','"+targetPath+"')", con);
+                    com2.ExecuteNonQuery();
                 }
                 catch
                 {
@@ -549,9 +555,18 @@ namespace cs_launcher_1
                 finally
                 {
                     con.Close();
+                    DataRow row = dataTable.NewRow();
+                    row["uid"] = uid;
+                    row["title"] = Path.GetFileNameWithoutExtension(filePath);
+                    row["brand"] = null;
+                    row["latestPlay"] = null;
+                    row["saleday"] = null;
+                    row["memo"] = 0;
+                    row["esid"] = "-1";
+                    dataTable.Rows.Add(row);
+                    dataGridView1.DataSource = dataTable;
                 }
             }
-*/
 
             chkDD.Close();
         }
