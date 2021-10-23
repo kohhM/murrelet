@@ -200,11 +200,6 @@ namespace cs_launcher_1
 
         }
 
-        private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
         {
             long esid = (Int64)dataGridView1[6,row].Value;
@@ -263,8 +258,99 @@ namespace cs_launcher_1
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             hensyu.Visible = true;
+            this.hensyu.button2.Click += hensyu_tekio_button;
+            hensyu.label7.Text = dataGridView1[0, row].Value.ToString();
+            hensyu.textBox1.Text = dataGridView1[1, row].Value.ToString();
+            hensyu.textBox2.Text = dataGridView1[2, row].Value.ToString();
+            hensyu.textBox3.Text = dataGridView1[4, row].Value.ToString();
+            hensyu.textBox4.Text = dataGridView1[6, row].Value.ToString();
+            hensyu.textBox5.Text = dataGridView1[5, row].Value.ToString();
+
+            string uid = (string)dataGridView1[0, row].Value;
+            using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr = com.ExecuteReader();
+                    while (sdr.Read() == true)
+                    {
+                        hensyu.textBox6.Text = (string)@sdr["execpath"];
+                    }
+                    sdr.Close();
+                }
+                catch
+                {
+                    Console.WriteLine("なんかエラー");
+                    //あとで消す
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
 
             hensyu.Show();
+        }
+
+        private void hensyu_tekio_button(object sender, EventArgs e)
+        {
+            string saleday = hensyu.textBox3.Text;
+            Console.WriteLine(saleday.Substring(0, 4) + "-" + saleday.Substring(5, 2) + "-" + saleday.Substring(8, 2));
+            Console.WriteLine(saleday.Substring(4,1));
+            //コンソールの2行はテスト用，最後に消す
+
+            if (saleday.Substring(4,1) == "-" && saleday.Substring(7,1) == "-")
+            {
+                try
+                {
+                    int.Parse(saleday.Substring(0, 4));
+                    int.Parse(saleday.Substring(5, 2));
+                    int.Parse(saleday.Substring(8, 2));
+                }
+                catch
+                {
+                    return;
+                    //エラーのときサンプルを表示してあげる
+                    //エラーを表示するところをデザインに付け足さないといけない
+                }
+            }
+            else
+            {
+                return;
+            }
+
+
+            using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            {
+                con.Open();
+                try
+                {
+                    SQLiteCommand titleAndBrand_com = new SQLiteCommand("UPDATE games SET title = '"+hensyu.textBox1.Text+"', brand = '"+hensyu.textBox2.Text+"' WHERE uid = '"+hensyu.label7.Text+"'", con);
+                    SQLiteDataReader sdr1 = titleAndBrand_com.ExecuteReader();
+                    sdr1.Close();
+                    //タイトルとブランドの更新
+
+                    SQLiteCommand path_com = new SQLiteCommand("UPDATE pathInfo SET execpath = '"+hensyu.textBox6.Text+"' WHERE uid ='"+hensyu.label7.Text+"'",con);
+                    SQLiteDataReader sdr2 = path_com.ExecuteReader();
+                    sdr2.Close();
+                    //パスの更新
+                }
+                catch
+                {
+                    Console.WriteLine("エラーでてます");
+                    //あとでけす
+                }
+                finally
+                {
+                    con.Close();
+                    dataGridView1[1, row].Value = hensyu.textBox1.Text;
+                    dataGridView1[2, row].Value = hensyu.textBox2.Text;
+                }
+            }
+
+            hensyu.Close();
         }
 
         private void murrelet_FormClosing(object sender, FormClosingEventArgs e)
@@ -534,6 +620,9 @@ namespace cs_launcher_1
             //編集画面にして「登録」でsql追加
             //chkDDのデザインを変える
             //これは今後
+
+            //すぐできそう
+            //また今度
 
             
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
