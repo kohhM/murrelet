@@ -108,36 +108,39 @@ namespace cs_launcher_1
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string uid = (string)dataGridView1[0,e.RowIndex].Value;
-            DateTime dt = DateTime.Now;
-            string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
-            dataTable.Rows[e.RowIndex][3] = now;
-            dataTable.AcceptChanges();
-            dataGridView1.DataSource = dataTable;
-
-            
-            using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+            if (e.RowIndex > 0)
             {
-                con.Open();
-                try
-                {
-                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = "+"'"+now+"'"+"WHERE uid ="+"'"+uid+"'", con);
-                    SQLiteDataReader sdr2 = com1.ExecuteReader();
-                    sdr2.Close();
-                    
+                string uid = (string)dataGridView1[0, e.RowIndex].Value;
+                DateTime dt = DateTime.Now;
+                string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
+                dataTable.Rows[e.RowIndex][3] = now;
+                dataTable.AcceptChanges();
+                dataGridView1.DataSource = dataTable;
 
-                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid ="+"'"+uid +"'", con);
-                    SQLiteDataReader sdr = com.ExecuteReader();
-                    while (sdr.Read() == true)
+
+                using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
+                {
+                    con.Open();
+                    try
                     {
-                        Process.Start((string)@sdr["execpath"]);
-                    }
+                        SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
+                        SQLiteDataReader sdr2 = com1.ExecuteReader();
+                        sdr2.Close();
 
-                    sdr.Close();
-                }
-                finally
-                {
-                    con.Close();
+
+                        SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                        SQLiteDataReader sdr = com.ExecuteReader();
+                        while (sdr.Read() == true)
+                        {
+                            Process.Start((string)@sdr["execpath"]);
+                        }
+
+                        sdr.Close();
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
             }
         }
@@ -257,6 +260,53 @@ namespace cs_launcher_1
 
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if(dataGridView1[5,row].Value.ToString() == "" ||dataGridView1[5,row].Value.ToString() == "0")
+            {
+                hensyu.button4.Text = "☆";
+                hensyu.button5.Text = "☆";
+                hensyu.button6.Text = "☆";
+                hensyu.button7.Text = "☆";
+                hensyu.button8.Text = "☆";
+            }else if(dataGridView1[5,row].Value.ToString() == "1")
+            {
+                hensyu.button4.Text = "★";
+                hensyu.button5.Text = "☆";
+                hensyu.button6.Text = "☆";
+                hensyu.button7.Text = "☆";
+                hensyu.button8.Text = "☆";
+            }else if(dataGridView1[5,row].Value.ToString() == "2")
+            {
+                hensyu.button4.Text = "★";
+                hensyu.button5.Text = "★";
+                hensyu.button6.Text = "☆";
+                hensyu.button7.Text = "☆";
+                hensyu.button8.Text = "☆";
+            }
+            else if (dataGridView1[5, row].Value.ToString() == "3")
+            {
+                hensyu.button4.Text = "★";
+                hensyu.button5.Text = "★";
+                hensyu.button6.Text = "★";
+                hensyu.button7.Text = "☆";
+                hensyu.button8.Text = "☆";
+            }
+            else if (dataGridView1[5, row].Value.ToString() == "4")
+            {
+                hensyu.button4.Text = "★";
+                hensyu.button5.Text = "★";
+                hensyu.button6.Text = "★";
+                hensyu.button7.Text = "★";
+                hensyu.button8.Text = "☆";
+            }
+            else if (dataGridView1[5, row].Value.ToString() == "5")
+            {
+                hensyu.button4.Text = "★";
+                hensyu.button5.Text = "★";
+                hensyu.button6.Text = "★";
+                hensyu.button7.Text = "★";
+                hensyu.button8.Text = "★";
+            }
+
             hensyu.Visible = true;
             this.hensyu.button2.Click += hensyu_tekio_button;
             hensyu.label7.Text = dataGridView1[0, row].Value.ToString();
@@ -264,7 +314,7 @@ namespace cs_launcher_1
             hensyu.textBox2.Text = dataGridView1[2, row].Value.ToString();
             hensyu.textBox3.Text = dataGridView1[4, row].Value.ToString();
             hensyu.textBox4.Text = dataGridView1[6, row].Value.ToString();
-            hensyu.textBox5.Text = dataGridView1[5, row].Value.ToString();
+            hensyu.label8.Text = dataGridView1[5, row].Value.ToString();
 
             string uid = (string)dataGridView1[0, row].Value;
             using(SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
@@ -297,11 +347,9 @@ namespace cs_launcher_1
         private void hensyu_tekio_button(object sender, EventArgs e)
         {
             string saleday = hensyu.textBox3.Text;
-            Console.WriteLine(saleday.Substring(0, 4) + "-" + saleday.Substring(5, 2) + "-" + saleday.Substring(8, 2));
-            Console.WriteLine(saleday.Substring(4,1));
-            //コンソールの2行はテスト用，最後に消す
+            string esid = hensyu.textBox4.Text;
 
-            if (saleday.Substring(4,1) == "-" && saleday.Substring(7,1) == "-")
+            if (saleday.Substring(4,1) == "-" && saleday.Substring(7,1) == "-" && saleday.Length == 10)
             {
                 try
                 {
@@ -311,14 +359,24 @@ namespace cs_launcher_1
                 }
                 catch
                 {
+                    hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
+
                     return;
-                    //エラーのときサンプルを表示してあげる
-                    //エラーを表示するところをデザインに付け足さないといけない
                 }
             }
             else
             {
+                hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
                 return;
+            }
+
+            try
+            {
+                int ckes = int.Parse(esid);
+            }
+            catch
+            {
+                esid = "-1";
             }
 
 
@@ -336,6 +394,21 @@ namespace cs_launcher_1
                     SQLiteDataReader sdr2 = path_com.ExecuteReader();
                     sdr2.Close();
                     //パスの更新
+
+                    SQLiteCommand day_com = new SQLiteCommand("UPDATE games SET saleday = '" + saleday + "' WHERE uid ='" + hensyu.label7.Text + "'", con);
+                    SQLiteDataReader sdr3 = day_com.ExecuteReader();
+                    sdr3.Close();
+                    //発売日の更新
+
+                    SQLiteCommand esid_com = new SQLiteCommand("UPDATE games SET esid = '" + int.Parse(esid) + "' WHERE uid ='" + hensyu.label7.Text + "'", con);
+                    SQLiteDataReader sdr4 = esid_com.ExecuteReader();
+                    sdr4.Close();
+                    //esidの更新
+
+                    SQLiteCommand memo_com = new SQLiteCommand("UPDATE games SET memo = '" + int.Parse(hensyu.label8.Text) + "' WHERE uid ='" + hensyu.label7.Text + "'", con);
+                    SQLiteDataReader sdr5 = memo_com.ExecuteReader();
+                    sdr5.Close();
+                    //空欄はなし　sqlのデフォルトを0に
                 }
                 catch
                 {
@@ -347,6 +420,9 @@ namespace cs_launcher_1
                     con.Close();
                     dataGridView1[1, row].Value = hensyu.textBox1.Text;
                     dataGridView1[2, row].Value = hensyu.textBox2.Text;
+                    dataGridView1[4, row].Value = saleday;
+                    dataGridView1[6, row].Value = esid;
+                    dataGridView1[5, row].Value = long.Parse(hensyu.label8.Text);
                 }
             }
 
@@ -658,6 +734,38 @@ namespace cs_launcher_1
             }
 
             chkDD.Close();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+
+            if(dgv.Columns[e.ColumnIndex].Name == "memo")
+            {
+                switch (e.Value)
+                {
+                    case (long)1:
+                        e.Value = "★ ☆ ☆ ☆ ☆";
+                        break;
+                    case (long)2:
+                        e.Value = "★ ★ ☆ ☆ ☆";
+                        break;
+                    case (long)3:
+                        e.Value = "★ ★ ★ ☆ ☆";
+                        break;
+                    case (long)4:
+                        e.Value = "★ ★ ★ ★ ☆";
+                        break;
+                    case (long)5:
+                        e.Value = "★ ★ ★ ★ ★";
+                        break;
+                    default:
+                        e.Value = "☆ ☆ ☆ ☆ ☆";
+                        break;
+
+                }
+                e.FormattingApplied = true;
+            }
         }
     }
 
