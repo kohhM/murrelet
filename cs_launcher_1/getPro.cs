@@ -27,6 +27,33 @@ namespace cs_launcher_1
             dataTable.Columns.Add("パス", typeof(string));
             DataRow row;
 
+            System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Process");
+            System.Management.ManagementObjectCollection moc = mc.GetInstances();
+
+            foreach(System.Management.ManagementObject mo in moc)
+            {
+                try
+                {
+                    row = dataTable.NewRow();
+                    row["pid"] = mo["ProcessId"];
+                    row["プロセス名"] = mo["Name"];
+                    row["タイトル名"] = mo["status"];
+                    row["パス"] = mo["ExecutablePath"];
+                    dataTable.Rows.Add(row);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("エラーやよー"+ex.Message);
+                }
+                finally
+                {
+                    mo.Dispose();
+                }
+            }
+            moc.Dispose();
+            mc.Dispose();
+
+/*
             //System.Diagnostics.Process[] ps = System.Diagnostics.Process.GetProcesses();
             var processes = Process.GetProcesses();
 
@@ -50,6 +77,7 @@ namespace cs_launcher_1
                     Console.WriteLine(ex.Message);
                 }
             }
+*/
             dataGridView1.DataSource = dataTable;
         }
 
@@ -66,7 +94,39 @@ namespace cs_launcher_1
 
         private void 再読み込みToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            dataTable.Clear();
+            DataRow row;
+
+            System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Process");
+            System.Management.ManagementObjectCollection moc = mc.GetInstances();
+
+            foreach (System.Management.ManagementObject mo in moc)
+            {
+                try
+                {
+                    row = dataTable.NewRow();
+                    row["pid"] = mo["ProcessId"];
+                    row["プロセス名"] = mo["Name"];
+                    row["タイトル名"] = mo["status"];
+                    row["パス"] = mo["ExecutablePath"];
+                    dataTable.Rows.Add(row);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("エラーやよー" + ex.Message);
+                }
+                finally
+                {
+                    mo.Dispose();
+                }
+            }
+            moc.Dispose();
+            mc.Dispose();
+            dataGridView1.DataSource = dataTable;
+            Console.WriteLine("更新完了");
+            //あとでけす
 
         }
+
     }
 }

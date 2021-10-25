@@ -30,10 +30,10 @@ namespace cs_launcher_1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,9 +53,9 @@ namespace cs_launcher_1
             this.ツールToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン確認ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ヘルプToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ヘルプToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -75,42 +75,43 @@ namespace cs_launcher_1
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(802, 408);
+            this.dataGridView1.Size = new System.Drawing.Size(802, 406);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
@@ -120,6 +121,8 @@ namespace cs_launcher_1
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.編集ToolStripMenuItem,
             this.開くToolStripMenuItem,
@@ -131,6 +134,7 @@ namespace cs_launcher_1
             // 
             // 編集ToolStripMenuItem
             // 
+            this.編集ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
             this.編集ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.編集ToolStripMenuItem.Text = "ゲーム起動";
@@ -141,26 +145,32 @@ namespace cs_launcher_1
             this.開くToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.フォルダーを開くToolStripMenuItem,
             this.erogameScapeを開くToolStripMenuItem});
+            this.開くToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
             this.開くToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.開くToolStripMenuItem.Text = "開く";
             // 
             // フォルダーを開くToolStripMenuItem
             // 
+            this.フォルダーを開くToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.フォルダーを開くToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.フォルダーを開くToolStripMenuItem.Name = "フォルダーを開くToolStripMenuItem";
-            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.フォルダーを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.フォルダーを開くToolStripMenuItem.Text = "フォルダーを開く";
             this.フォルダーを開くToolStripMenuItem.Click += new System.EventHandler(this.フォルダーを開くToolStripMenuItem_Click);
             // 
             // erogameScapeを開くToolStripMenuItem
             // 
+            this.erogameScapeを開くToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.erogameScapeを開くToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.erogameScapeを開くToolStripMenuItem.Name = "erogameScapeを開くToolStripMenuItem";
-            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.erogameScapeを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.erogameScapeを開くToolStripMenuItem.Text = "ErogameScapeを開く";
             this.erogameScapeを開くToolStripMenuItem.Click += new System.EventHandler(this.erogameScapeを開くToolStripMenuItem_Click);
             // 
             // 設定ToolStripMenuItem1
             // 
+            this.設定ToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.Window;
             this.設定ToolStripMenuItem1.Name = "設定ToolStripMenuItem1";
             this.設定ToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.設定ToolStripMenuItem1.Text = "編集";
@@ -171,26 +181,32 @@ namespace cs_launcher_1
             this.コピーToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.タイトルToolStripMenuItem,
             this.ブランドToolStripMenuItem});
+            this.コピーToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.コピーToolStripMenuItem.Name = "コピーToolStripMenuItem";
             this.コピーToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.コピーToolStripMenuItem.Text = "コピー";
             // 
             // タイトルToolStripMenuItem
             // 
+            this.タイトルToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.タイトルToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.タイトルToolStripMenuItem.Name = "タイトルToolStripMenuItem";
-            this.タイトルToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.タイトルToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.タイトルToolStripMenuItem.Text = "タイトル";
             this.タイトルToolStripMenuItem.Click += new System.EventHandler(this.タイトルToolStripMenuItem_Click);
             // 
             // ブランドToolStripMenuItem
             // 
+            this.ブランドToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ブランドToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.ブランドToolStripMenuItem.Name = "ブランドToolStripMenuItem";
-            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.ブランドToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ブランドToolStripMenuItem.Text = "ブランド";
             this.ブランドToolStripMenuItem.Click += new System.EventHandler(this.ブランドToolStripMenuItem_Click);
             // 
             // 削除ToolStripMenuItem
             // 
+            this.削除ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
             this.削除ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.削除ToolStripMenuItem.Text = "削除";
@@ -221,6 +237,8 @@ namespace cs_launcher_1
             // 
             // プロセスから追加ToolStripMenuItem
             // 
+            this.プロセスから追加ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.プロセスから追加ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.プロセスから追加ToolStripMenuItem.Name = "プロセスから追加ToolStripMenuItem";
             this.プロセスから追加ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.プロセスから追加ToolStripMenuItem.Text = "プロセスから追加";
@@ -228,6 +246,8 @@ namespace cs_launcher_1
             // 
             // erogameScapeから追加ToolStripMenuItem
             // 
+            this.erogameScapeから追加ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.erogameScapeから追加ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.erogameScapeから追加ToolStripMenuItem.Name = "erogameScapeから追加ToolStripMenuItem";
             this.erogameScapeから追加ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.erogameScapeから追加ToolStripMenuItem.Text = "ErogameScapeから追加";
@@ -235,6 +255,8 @@ namespace cs_launcher_1
             // 
             // 終了ToolStripMenuItem
             // 
+            this.終了ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.終了ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
             this.終了ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.終了ToolStripMenuItem.Text = "終了";
@@ -253,15 +275,27 @@ namespace cs_launcher_1
             // 
             // 設定ToolStripMenuItem
             // 
+            this.設定ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.設定ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
             this.設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.設定ToolStripMenuItem.Text = "設定";
             // 
             // バージョン確認ToolStripMenuItem
             // 
+            this.バージョン確認ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.バージョン確認ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.バージョン確認ToolStripMenuItem.Name = "バージョン確認ToolStripMenuItem";
             this.バージョン確認ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.バージョン確認ToolStripMenuItem.Text = "バージョン情報";
+            // 
+            // ヘルプToolStripMenuItem
+            // 
+            this.ヘルプToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ヘルプToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
+            this.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
+            this.ヘルプToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ヘルプToolStripMenuItem.Text = "ヘルプ";
             // 
             // statusStrip1
             // 
@@ -280,12 +314,6 @@ namespace cs_launcher_1
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(51, 17);
             this.toolStripStatusLabel1.Text = "murrelet";
-            // 
-            // ヘルプToolStripMenuItem
-            // 
-            this.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
-            this.ヘルプToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ヘルプToolStripMenuItem.Text = "ヘルプ";
             // 
             // murrelet
             // 

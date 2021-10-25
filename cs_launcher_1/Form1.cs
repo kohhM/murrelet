@@ -108,7 +108,7 @@ namespace cs_launcher_1
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 string uid = (string)dataGridView1[0, e.RowIndex].Value;
                 DateTime dt = DateTime.Now;
@@ -349,25 +349,36 @@ namespace cs_launcher_1
             string saleday = hensyu.textBox3.Text;
             string esid = hensyu.textBox4.Text;
 
-            if (saleday.Substring(4,1) == "-" && saleday.Substring(7,1) == "-" && saleday.Length == 10)
+            if (saleday != "")
             {
                 try
                 {
-                    int.Parse(saleday.Substring(0, 4));
-                    int.Parse(saleday.Substring(5, 2));
-                    int.Parse(saleday.Substring(8, 2));
+                    if (saleday.Substring(4, 1) == "-" && saleday.Substring(7, 1) == "-" && saleday.Length == 10)
+                    {
+                        try
+                        {
+                            int.Parse(saleday.Substring(0, 4));
+                            int.Parse(saleday.Substring(5, 2));
+                            int.Parse(saleday.Substring(8, 2));
+                        }
+                        catch
+                        {
+                            hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
+
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
+                        return;
+                    }
                 }
                 catch
                 {
                     hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
-
                     return;
                 }
-            }
-            else
-            {
-                hensyu.toolStripStatusLabel1.Text = "'発売日はyyyy-mm-dd'のように入力してください";
-                return;
             }
 
             try
@@ -447,8 +458,35 @@ namespace cs_launcher_1
 
         private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            getPro.Show();
             getPro.Visible = true;
+            this.getPro.dataGridView1.CellDoubleClick += process_dgv_CellDoubleClick;
+            getPro.Show();
+        }
+
+        private void process_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                string uid = newGuid();
+                string name = this.getPro.dataGridView1[2, e.RowIndex].Value.ToString();
+                string path = this.getPro.dataGridView1[3, e.RowIndex].Value.ToString();
+                //代入ができない
+                //e.RowIndexまではとれてる.name,pathがnullになる
+
+
+                if(name == "")
+                {
+                    toolStripStatusLabel1.Text = path+"ファイルを追加しました(名前がありません...)";
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = name + "を追加しました";
+                }
+
+                getPro.Close();
+            }
+
         }
 
         private void erogameScapeから追加ToolStripMenuItem_Click(object sender, EventArgs e)

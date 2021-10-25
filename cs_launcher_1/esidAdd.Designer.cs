@@ -36,7 +36,8 @@ namespace cs_launcher_1
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(139, 60);
+            this.textBox1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBox1.Location = new System.Drawing.Point(167, 60);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 19);
             this.textBox1.TabIndex = 0;
@@ -44,7 +45,8 @@ namespace cs_launcher_1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 63);
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(37, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 12);
             this.label1.TabIndex = 1;
@@ -52,7 +54,9 @@ namespace cs_launcher_1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(106, 129);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.Window;
+            this.button1.Location = new System.Drawing.Point(116, 136);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -63,12 +67,13 @@ namespace cs_launcher_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 196);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ClientSize = new System.Drawing.Size(323, 196);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "esidAdd";
-            this.Text = "esidAdd";
+            this.Text = "erogameScapeIDから追加";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.esidAdd_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
