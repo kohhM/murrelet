@@ -27,23 +27,25 @@ namespace cs_launcher_1
             dataTable.Columns.Add("パス", typeof(string));
             DataRow row;
 
+            Dictionary<int, string> title = new Dictionary<int, string>();
+
             System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Process");
             System.Management.ManagementObjectCollection moc = mc.GetInstances();
 
             foreach(System.Management.ManagementObject mo in moc)
             {
+                
                 try
                 {
                     row = dataTable.NewRow();
                     row["pid"] = mo["ProcessId"];
                     row["プロセス名"] = mo["Name"];
-                    row["タイトル名"] = mo["status"];
                     row["パス"] = mo["ExecutablePath"];
                     dataTable.Rows.Add(row);
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine("エラーやよー"+ex.Message);
+                    Console.WriteLine(ex.Message);
                 }
                 finally
                 {
@@ -52,33 +54,40 @@ namespace cs_launcher_1
             }
             moc.Dispose();
             mc.Dispose();
+            dataGridView1.DataSource = dataTable;
 
-/*
-            //System.Diagnostics.Process[] ps = System.Diagnostics.Process.GetProcesses();
+
             var processes = Process.GetProcesses();
 
-            //foreach(System.Diagnostics.Process p in ps)
             foreach(var process in processes)
             {
-                try
+                if (process.MainWindowTitle != "")
                 {
-                    row = dataTable.NewRow();
-                    row["pid"] = process.Id;
-
-                    row["プロセス名"] = process.ProcessName;
-                    //                    row["タイトル名"] = p.MainModule.ModuleName;
-                    row["タイトル名"] = process.MainWindowTitle;
-                    //                   row["パス"] = p.MainModule.FileName;
-                    row["パス"] = process.MainModule.FileName;
-                    dataTable.Rows.Add(row);
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
+                    try
+                    {
+                        title.Add(process.Id, process.MainWindowTitle);
+                        Console.WriteLine(process.Id + "," + process.MainWindowTitle);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
-*/
-            dataGridView1.DataSource = dataTable;
+            //辞書作成
+
+            foreach(KeyValuePair<int,string> x in title)
+            {
+                for(int i= 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    Console.WriteLine(dataGridView1[0, i].Value);
+                    if(int.Parse(dataGridView1[0,i].Value.ToString()) == x.Key)
+                    {
+                        dataGridView1[2, i].Value = x.Value;
+                    }
+                }
+            }
+
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
