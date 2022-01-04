@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
-using System.Text.Json;
 using System.IO;
 
 namespace cs_launcher_1
@@ -26,7 +20,6 @@ namespace cs_launcher_1
         public murrelet()
         {
             InitializeComponent();
-
         }
 
         private void murrelet_Load(object sender, EventArgs e)
@@ -37,6 +30,7 @@ namespace cs_launcher_1
             using (SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM games", con))
             {
                 adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
                 dataGridView1.RowHeadersVisible = false;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
@@ -55,16 +49,16 @@ namespace cs_launcher_1
         {
             string title;
             string brand;
-            if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == MouseButtons.Right)
             {
 
                 dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
-                //セルを選択できるように
 
                 row = e.RowIndex;
                 contextMenuStrip1.Show();
                 contextMenuStrip1.Left = MousePosition.X;
                 contextMenuStrip1.Top = MousePosition.Y;
+
             }
             else if(e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -94,12 +88,6 @@ namespace cs_launcher_1
             }
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            dataGridView1.DataSource = dataTable;
-            base.OnLoad(e);
-        }
-
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -112,36 +100,41 @@ namespace cs_launcher_1
                 string uid = (string)dataGridView1[0, e.RowIndex].Value;
                 DateTime dt = DateTime.Now;
                 string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
-                //dataTable.Rows[e.RowIndex][3] = now;
                 dataGridView1[3, e.RowIndex].Value = now;
-                //dataTable.AcceptChanges();
-                //dataGridView1.DataSource = dataTable;
-
 
                 using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
                 {
                     con.Open();
- //                   try
-   //                 {
-                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
-                    SQLiteDataReader sdr2 = com1.ExecuteReader();
-                    sdr2.Close();
-
-
-                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
-                    SQLiteDataReader sdr = com.ExecuteReader();
-
-                    while (sdr.Read() == true)
+                    try
                     {
-                        Process.Start((string)@sdr["execpath"]);
-                    }
+                        SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
+                        SQLiteDataReader sdr2 = com1.ExecuteReader();
+                        sdr2.Close();
 
-                    sdr.Close();
-     //               }
-       //             finally
-         //           {
-                    con.Close();
-           //         }
+
+                        SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                        SQLiteDataReader sdr = com.ExecuteReader();
+
+                        Process process = new Process();
+                        while (sdr.Read() == true)
+                        {
+                            //Process.Start((string)@sdr["execpath"]);
+                            string pathTar = (string)sdr["execpath"];
+                            process.StartInfo.FileName = pathTar;
+
+                            var ic = pathTar.LastIndexOf('\\');
+
+                            process.StartInfo.WorkingDirectory = pathTar.Substring(0, ic);
+                            process.Start();
+
+                        }
+
+                        sdr.Close();
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
                 dataTable = (DataTable)dataGridView1.DataSource;
             }
@@ -202,7 +195,6 @@ namespace cs_launcher_1
                     con.Close();
                 }
             }
-
         }
 
         private void erogameScapeを開くToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,7 +222,6 @@ namespace cs_launcher_1
         private void Button1_Click1(object sender, EventArgs e)
         {
             checkDel.Close();
-            //キャンセル
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -252,7 +243,7 @@ namespace cs_launcher_1
                 }
                 catch
                 {
-                    Console.WriteLine("sqlエラー");
+                    //Console.WriteLine("sqlエラー");
                 }
                 finally
                 {
@@ -261,7 +252,7 @@ namespace cs_launcher_1
             }
 
             checkDel.Close();
-            //削除確定
+
         }
 
         private void 設定ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -336,20 +327,17 @@ namespace cs_launcher_1
                     }
                     sdr.Close();
                 }
-                catch
+                catch(Exception q)
                 {
-                    Console.WriteLine("なんかエラー");
-                    //あとで消す
+                    //Console.WriteLine(q);
                 }
                 finally
                 {
                     con.Close();
                 }
             }
-
             hensyu.Show();
         }
-
         private void hensyu_tekio_button(object sender, EventArgs e)
         {
             string saleday = hensyu.textBox3.Text;
@@ -427,10 +415,9 @@ namespace cs_launcher_1
                     sdr5.Close();
                     //空欄はなし　sqlのデフォルトを0に
                 }
-                catch
+                catch(Exception x)
                 {
-                    Console.WriteLine("エラーでてます");
-                    //あとでけす
+                    //Console.WriteLine("エラーでてます");
                 }
                 finally
                 {
@@ -458,7 +445,7 @@ namespace cs_launcher_1
             }
             catch(Exception x)
             {
-                Console.WriteLine("えらー！"+ x.Message);
+                //Console.WriteLine("えらー！"+ x.Message);
             }
         }
 
@@ -480,7 +467,6 @@ namespace cs_launcher_1
             try
             {
                 esid = Int32.Parse(esidS);
-//                this.toolStripStatusLabel1.Text = esidS;
 
                 using(SQLiteConnection con = new SQLiteConnection("Data Source = data.db"))
                 {
@@ -503,9 +489,7 @@ namespace cs_launcher_1
                     catch(Exception a)
                     {
                         this.toolStripStatusLabel1.Text = "本アプリのデータが古い、または存在しないidです";
-                        //sqlにesidがなくてもエラーを吐かない。そこは修正必要だけどめんどいから後で。
-                        //別にそこを確認する必要ない？
-                        Console.WriteLine("エラー>>" + a);
+                        //Console.WriteLine("エラー>>" + a);
                     }
                     finally
                     {
@@ -540,7 +524,6 @@ namespace cs_launcher_1
                 catch(Exception a)
                 {
                     this.toolStripStatusLabel1.Text = "失敗しました:SQLite書き込みエラー";
-                    Console.WriteLine("エラー>>" + a);
                 }
                 finally
                 {
@@ -703,15 +686,7 @@ namespace cs_launcher_1
         private void Button1_Click2(object sender, EventArgs e)
         {
             string uid = newGuid();
-            //仕様変更したい
-            //編集画面にして「登録」でsql追加
-            //chkDDのデザインを変える
-            //これは今後
 
-            //すぐできそう
-            //また今度
-
-            
             using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
             {
                 con.Open();
@@ -781,9 +756,10 @@ namespace cs_launcher_1
 
         private void ヘルプToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string cd = System.Environment.CurrentDirectory;
+            cd = cd + "\\help.html";
+            Process.Start(cd);
         }
     }
 
-    
 }
