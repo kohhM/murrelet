@@ -18,7 +18,6 @@ namespace cs_launcher_1
     {
         public static DataTable dataTable = new DataTable();
         checkDel checkDel = new checkDel();
-        getPro getPro = new getPro();
         esidAdd esidAdd = new esidAdd();
         hensyu hensyu = new hensyu();
         chkDD chkDD = new chkDD();
@@ -113,35 +112,38 @@ namespace cs_launcher_1
                 string uid = (string)dataGridView1[0, e.RowIndex].Value;
                 DateTime dt = DateTime.Now;
                 string now = dt.ToString("yyyy/MM/dd HH:mm:ss");
-                dataTable.Rows[e.RowIndex][3] = now;
-                dataTable.AcceptChanges();
-                dataGridView1.DataSource = dataTable;
+                //dataTable.Rows[e.RowIndex][3] = now;
+                dataGridView1[3, e.RowIndex].Value = now;
+                //dataTable.AcceptChanges();
+                //dataGridView1.DataSource = dataTable;
 
 
                 using (SQLiteConnection con = new SQLiteConnection("Data Source = test.db"))
                 {
                     con.Open();
-                    try
+ //                   try
+   //                 {
+                    SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr2 = com1.ExecuteReader();
+                    sdr2.Close();
+
+
+                    SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    SQLiteDataReader sdr = com.ExecuteReader();
+
+                    while (sdr.Read() == true)
                     {
-                        SQLiteCommand com1 = new SQLiteCommand("UPDATE games SET latestPlay = " + "'" + now + "'" + "WHERE uid =" + "'" + uid + "'", con);
-                        SQLiteDataReader sdr2 = com1.ExecuteReader();
-                        sdr2.Close();
-
-
-                        SQLiteCommand com = new SQLiteCommand("SELECT * FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
-                        SQLiteDataReader sdr = com.ExecuteReader();
-                        while (sdr.Read() == true)
-                        {
-                            Process.Start((string)@sdr["execpath"]);
-                        }
-
-                        sdr.Close();
+                        Process.Start((string)@sdr["execpath"]);
                     }
-                    finally
-                    {
-                        con.Close();
-                    }
+
+                    sdr.Close();
+     //               }
+       //             finally
+         //           {
+                    con.Close();
+           //         }
                 }
+                dataTable = (DataTable)dataGridView1.DataSource;
             }
         }
 
@@ -233,6 +235,7 @@ namespace cs_launcher_1
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            //エラーでる
             string uid = (string)dataGridView1[0, row].Value;
             dataGridView1.Rows.RemoveAt(row);
 
@@ -243,6 +246,9 @@ namespace cs_launcher_1
                 {
                     SQLiteCommand com = new SQLiteCommand("DELETE FROM games WHERE uid =" + "'" + uid + "'", con);
                     com.ExecuteNonQuery();
+
+                    SQLiteCommand com2 = new SQLiteCommand("DELETE FROM pathInfo WHERE uid =" + "'" + uid + "'", con);
+                    com2.ExecuteNonQuery();
                 }
                 catch
                 {
@@ -454,39 +460,6 @@ namespace cs_launcher_1
             {
                 Console.WriteLine("えらー！"+ x.Message);
             }
-        }
-
-        private void プロセスから追加ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            getPro.Visible = true;
-            this.getPro.dataGridView1.CellDoubleClick += process_dgv_CellDoubleClick;
-            getPro.Show();
-        }
-
-        private void process_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0)
-            {
-                string uid = newGuid();
-                string name = this.getPro.dataGridView1[2, e.RowIndex].Value.ToString();
-                string path = this.getPro.dataGridView1[3, e.RowIndex].Value.ToString();
-                //代入ができない
-                //e.RowIndexまではとれてる.name,pathがnullになる
-
-
-                if(name == "")
-                {
-                    toolStripStatusLabel1.Text = path+"ファイルを追加しました(名前がありません...)";
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = name + "を追加しました";
-                }
-
-                getPro.Close();
-            }
-
         }
 
         private void erogameScapeから追加ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -804,6 +777,11 @@ namespace cs_launcher_1
                 }
                 e.FormattingApplied = true;
             }
+        }
+
+        private void ヘルプToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
