@@ -279,7 +279,7 @@ namespace cs_launcher_1
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "murrelet";
-            this.Text = "Form1";
+            this.Text = "murrelet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.murrelet_FormClosing);
             this.Load += new System.EventHandler(this.murrelet_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.murrelet_DragDrop);
