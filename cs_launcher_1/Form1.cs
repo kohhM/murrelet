@@ -623,6 +623,8 @@ namespace cs_launcher_1
 
         string filePath = "";
         string targetPath = "";
+        bool sdd = false;
+
         public void murrelet_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -665,8 +667,12 @@ namespace cs_launcher_1
                         return;
                     }
                     chkDD.Visible = true;
-                    this.chkDD.button1.Click += Button1_Click2;
-                    this.chkDD.button2.Click += Button2_Click1;
+                    if (sdd == false)
+                    {
+                        this.chkDD.button1.Click += Button1_Click2;
+                        this.chkDD.button2.Click += Button2_Click1;
+                        sdd = true;
+                    }
                     chkDD.Show();
 
                 }
