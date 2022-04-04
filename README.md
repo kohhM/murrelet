@@ -20,7 +20,7 @@ KaniPanさんの(https://github.com/bluekani/ErogamescapeSQL )を使用してえ
 その後，編集から☆をクリック
 
 ## 動作環境
-Windows 10  
+Windows 10以上(で試しました)
 
 .NET Framework 4.7.2
 
